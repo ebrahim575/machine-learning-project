@@ -29,7 +29,7 @@ def main():
         # intents = json.loads(open('intents.json').read(),encoding="utf-8")
 
 
-        f = open('intents.json',encoding="utf-8")
+        f = open('intents2.json',encoding="utf-8")
         intents = json.load(f)
 
         words = []
@@ -42,9 +42,9 @@ def main():
                 for pattern in intent['patterns']:
                     word_list = nltk.word_tokenize(pattern)
                     words.extend(word_list)
-                    documents.append((word_list,intent['convoNum']))
-                    if intent['convoNum'] not in classes:
-                        classes.append(intent['convoNum'])
+                    documents.append((word_list,intent['tag']))
+                    if intent['tag'] not in classes:
+                        classes.append(intent['tag'])
             except:
                 pass
 
@@ -84,9 +84,9 @@ def main():
         #
         t1 = datetime.datetime.now()
 
-        new_chatbot_model = load_model('chatbotmodel.h5')
-        hist2 = new_chatbot_model.fit(np.array(train_x),np.array(train_y),epochs=10000,batch_size=5,verbose=1) #change epochs value to train a larger quantity
-        new_chatbot_model.save('chatbotmodel.h5',hist2)
+        new_chatbot_model = load_model('chatbotmodel2.h5')
+        hist2 = new_chatbot_model.fit(np.array(train_x),np.array(train_y),epochs=5000,batch_size=5,verbose=1) #change epochs value to train a larger quantity
+        new_chatbot_model.save('chatbotmodel2.h5',hist2)
 
         t2 = datetime.datetime.now()
 

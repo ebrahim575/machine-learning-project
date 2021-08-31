@@ -6,3 +6,20 @@ IndexError: list index out of range
 You're getting this because the predict_class is not predicting anything over the 0.25 threshold.
 
 list_of_intents = intents_json['intent'] it is not intent it is intents.....
+
+
+loging to monkeylearn
+john.wick1964@outlook.com
+wMe#1RZdjuDf
+
+question
+pattern : 'umars questinos'
+response : 'my answers' and 'my statment'
+
+statement
+patter : 'umar statement
+response: : 'my question and 'my statment'
+
+answer
+pattern : 'umar answers'
+response : 'my question' and 'my statment'

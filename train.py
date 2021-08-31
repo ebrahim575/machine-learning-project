@@ -17,7 +17,7 @@ lemmatizer = WordNetLemmatizer()
 # intents = json.loads(open('intents.json').read(),encoding="utf-8")
 
 
-f = open('intents.json',encoding="utf-8")
+f = open('intents2.json',encoding="utf-8")
 intents = json.load(f)
 
 words = []
@@ -30,9 +30,9 @@ for intent in intents['intents']:
         for pattern in intent['patterns']:
             word_list = nltk.word_tokenize(pattern)
             words.extend(word_list)
-            documents.append((word_list,intent['convoNum']))
-            if intent['convoNum'] not in classes:
-                classes.append(intent['convoNum'])
+            documents.append((word_list,intent['tag']))
+            if intent['tag'] not in classes:
+                classes.append(intent['tag'])
     except:
         pass
 words = [lemmatizer.lemmatize(word) for word in words if word not in ignore_letters]
@@ -67,6 +67,6 @@ model.add(Dense(len(train_y[0]), activation='softmax'))
 
 sgd = SGD(lr=0.01,decay=1e-6,momentum=0.9,nesterov=True)
 model.compile(loss='categorical_crossentropy',optimizer=sgd,metrics=['accuracy'])
-hist = model.fit(np.array(train_x),np.array(train_y),epochs=4000,batch_size=5,verbose=1) #change epochs value to train a larger quantity
-model.save('chatbotmodel.h5',hist)
+hist = model.fit(np.array(train_x),np.array(train_y),epochs=1000,batch_size=5,verbose=1) #change epochs value to train a larger quantity
+model.save('chatbotmodel2.h5',hist)
 print('Finished!')

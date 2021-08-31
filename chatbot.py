@@ -9,12 +9,12 @@ from tensorflow.keras.models import load_model
 
 lemmatizer = WordNetLemmatizer()
 
-f = open('intents.json',encoding="utf-8")
+f = open('intents2.json',encoding="utf-8")
 intents = json.load(f)
 
 words = pickle.load(open('words.pkl','rb'))
 classes = pickle.load(open('classes.pkl','rb'))
-model = load_model('chatbotmodel.h5') #model = load_model('chatbot_model.model')
+model = load_model('chatbotmodel2.h5') #model = load_model('chatbot_model.model')
 
 
 def clean_up_sentence(sentence):
@@ -47,7 +47,7 @@ def get_response(intents_list,intents_json):
     tag = intents_list[0]['intent']
     list_of_intents = intents_json['intents']
     for i in list_of_intents:
-        if i['convoNum'] == tag:
+        if i['tag'] == tag:
             result = random.choice(i['responses'])
             break
     return result
