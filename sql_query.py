@@ -21,12 +21,8 @@ def get_data():
 def get_text():
     data = get_data()
     for i in range(len(data)):
-        print(data[i])
+        #print(data[i])
         if data[i][2] == 0:
             return data[i][1]
-
-def main():
-    print(get_text())
-main()
 
 

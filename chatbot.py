@@ -1,3 +1,6 @@
+import os
+from sql_query import *
+import time
 import random
 import json
 import pickle
@@ -34,7 +37,7 @@ def bag_of_words(sentence):
 def predict_class(sentence):
     bow = bag_of_words(sentence)
     res = model.predict(np.array([bow]))[0]
-    ERROR_THRESHOLD = 0.35
+    ERROR_THRESHOLD = 0.25
     results = [[i,r] for i, r in enumerate(res) if r > ERROR_THRESHOLD] #0 should be "ERROR_THRESHOLD (temp value since we are training still
     results.sort(key=lambda x: x[1], reverse=True)
     return_list = []
@@ -52,9 +55,25 @@ def get_response(intents_list,intents_json):
             break
     return result
 
+temp = ''
+prev_pickle = 'previous_message.pk'
+
 while 1:
     print()
-    message = input('What would you like to say? : ')
-    ints = predict_class(message) #ints comes out as an empty list
-    res = get_response(ints,intents)
-    print(res)
+    #message = input('What would you like to say? : ')
+    message = get_text()
+    with open(prev_pickle, 'rb') as fi:
+        temp = pickle.load(fi)
+        print(temp)
+    if message == temp:
+        time.sleep(5)
+        continue
+    else:
+        ints = predict_class(message) #ints comes out as an empty list
+        res = get_response(ints,intents)
+        os.system('osascript send.scpt {} "{}"'.format('16307858333', 'Ebrahim\'s AI says : ' + res))
+        print(res)
+        temp = message
+        with open(prev_pickle, 'wb') as fi:
+            pickle.dump(temp, fi)
+
