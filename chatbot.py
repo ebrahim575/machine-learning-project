@@ -64,15 +64,17 @@ while 1:
     message = get_text()
     with open(prev_pickle, 'rb') as fi:
         temp = pickle.load(fi)
-        print(temp)
+        print('Previous text message was ',temp)
     if message == temp:
+        print('Waiting for new text message...')
         time.sleep(5)
         continue
     else:
+        print('New message has arrived')
         ints = predict_class(message) #ints comes out as an empty list
         res = get_response(ints,intents)
+        print('Sending \'',res,'\' to 16307858333')
         os.system('osascript send.scpt {} "{}"'.format('16307858333', 'Ebrahim\'s AI says : ' + res))
-        print(res)
         temp = message
         with open(prev_pickle, 'wb') as fi:
             pickle.dump(temp, fi)
