@@ -23,3 +23,14 @@ response: : 'my question and 'my statment'
 answer
 pattern : 'umar answers'
 response : 'my question' and 'my statment'
+/////////
+#!/bin/sh
+
+sqlite3
+.timeout 2000
+.open /Users/ezulq/Library/Messages/chat.db
+.timeout 2000
+SELECT * FROM chat; > /Users/ezulq/Desktop/test.txt
+.timeout 2000
+.exit
+
