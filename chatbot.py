@@ -9,7 +9,6 @@ import nltk
 from nltk.stem import WordNetLemmatizer
 from tensorflow.keras.models import load_model
 
-
 lemmatizer = WordNetLemmatizer()
 
 f = open('intents2.json',encoding="utf-8")
@@ -18,7 +17,6 @@ intents = json.load(f)
 words = pickle.load(open('words.pkl','rb'))
 classes = pickle.load(open('classes.pkl','rb'))
 model = load_model('chatbotmodel2.h5') #model = load_model('chatbot_model.model')
-
 
 def clean_up_sentence(sentence):
     sentence_words = nltk.word_tokenize(sentence)
@@ -78,4 +76,3 @@ while 1:
         temp = message
         with open(prev_pickle, 'wb') as fi:
             pickle.dump(temp, fi)
-

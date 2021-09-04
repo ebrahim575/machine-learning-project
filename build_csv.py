@@ -1,5 +1,4 @@
 import json
-import csv
 
 def get_messages():
     f = open('chat.json',encoding="utf-8")
