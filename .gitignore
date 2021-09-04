@@ -1,0 +1,17 @@
+build_csv.py
+chat.json
+chatbotmodel.h5
+chatbotmodel2.h5
+load_train.py
+my_messages.txt
+my_messages_monkeylearn.csv
+nation_messages.csv
+nation_messages.txt
+nation_messages_monkeylearn.csv
+new_create_intents.py
+notes.txt
+sample-intents.json
+test.py
+train.py
+my_messages.csv
+umar_message.csv~
